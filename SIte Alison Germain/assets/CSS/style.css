@@ -1,0 +1,162 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;800&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Island+Moments&family=Montserrat+Alternates:wght@400;800&display=swap');
+/* global----------------------- */
+body{
+    font-family: 'Island Moments', cursive;
+    /* font-family: 'Montserrat Alternates', sans-serif; */
+    color:#41210A;
+}
+.container{
+    width: 80%;
+    margin: auto;
+}
+.fl{float: left;}
+.fr{float: right;}
+header::after, section::after, article::after, footer::before, nav::after{
+    content: '';
+    display: block;
+    clear: both;
+    float: none;
+}
+/* header------------------------------- */
+header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+header nav .lien-nav{
+    display: block;
+    width: 20%;
+    text-align: left;
+    line-height: 4.5rem;
+    text-decoration: none;
+    color: #41210A;
+    font-weight: 800;
+    transition: color .5s ease-out;
+
+}
+header nav .lien-nav:hover{
+    color: #D2B48C;
+}
+header nav #logo{
+    display: block;
+    width: 20%;
+    text-align: left;
+}
+header nav #logo img{
+    height: 3.5rem;
+    margin: .5rem 0;
+}
+/* SECTION 1 le premier né */
+section:first-child{
+    background-color: #FFFFFF;
+    margin-top: 4.7rem;
+    padding: 3rem 0;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+section:first-child h1{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+section:first-child p{
+    font-size: 1.1rem;
+    padding: 2rem 0;
+}
+/* section 2 le deuxieme */
+section:nth-child(2) article{
+    border: .1rem solid #41210A;
+    padding: 1%;
+    margin-left: 1%;
+    width: 30%;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+section:nth-child(2) article img{
+    height: 8rem;
+}
+section:nth-child(2) article h2, section:nth-child(2) article p{
+    text-align: left;
+}
+section:nth-child(2) article h2{
+   margin: 1rem 0;
+   font-weight: 800;
+   font-size: 2rem;
+}
+section:nth-child(2) div{
+    clear: both;
+    float: none;
+    text-align: center;
+}
+.btn{
+    padding: 1rem 2rem;
+    text-decoration: none;
+    color:#41210A ;
+    font-weight: 800; 
+    border: .1rem solid #41210A;
+    transition: all .5s ease-out;
+}
+.btn:hover{
+   background-color: #F5DEB3;
+}
+/* section 3 */
+section:last-child {
+    margin-top: 9rem;
+}
+section:last-child article{
+    margin-top: 9rem;
+}
+section:last-child article img{
+    width: 30%;
+}
+section:last-child article div{
+    width: 60%;
+}
+section:last-child article div h3{
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+}
+section:last-child article div p{
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+section:last-child article div p:last-of-type{
+    margin-bottom: 3rem;
+}
+/* footer */
+footer{
+    background-color: #D2B48C;
+    text-align: center;
+    color: #FFFFFF;
+}
+footer h4{
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 2rem 0;
+}
+footer form input{
+    border: .1rem solid #41210A;
+    margin: 1rem 0;
+    font-family: 'Montserrat Alternates', sans-serif;
+    padding: 1rem 2rem;
+}
+footer form input:first-child::placeholder{
+    color: #41210A;
+}
+footer form input:last-child{
+    background-color: #F5DEB3;
+    font-weight: 800;
+    margin-left: -.3rem;
+}
+footer nav a{
+    display: block;
+    width: 16.6%;
+    color:#FFFFFF;
+    font-weight: 800;
+    line-height: 1.8rem;
+    font-size: .9rem;
+    text-decoration: none;
+}
