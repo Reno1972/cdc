@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 21 jan. 2022 à 12:26
+-- Généré le : ven. 21 jan. 2022 à 15:27
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.1
 
@@ -56,6 +56,17 @@ CREATE TABLE `agendas` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id_categorie` int(11) NOT NULL,
+  `nom_categorie` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `commandes`
 --
 
@@ -66,6 +77,21 @@ CREATE TABLE `commandes` (
   `transporteur_commande` varchar(50) NOT NULL,
   `prix_transport_commande` decimal(15,2) NOT NULL,
   `payee` tinyint(1) DEFAULT NULL,
+  `id_utilisateur` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `commentaires`
+--
+
+CREATE TABLE `commentaires` (
+  `id_commentaire` int(11) NOT NULL,
+  `nom_commentaire` varchar(100) NOT NULL,
+  `commentaire` text NOT NULL,
+  `id_evennement` int(11) DEFAULT NULL,
+  `id_produit` int(11) DEFAULT NULL,
   `id_utilisateur` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -85,6 +111,18 @@ CREATE TABLE `evennements` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `images`
+--
+
+CREATE TABLE `images` (
+  `id_image` int(11) NOT NULL,
+  `nom_imaage` varchar(50) NOT NULL,
+  `url_image` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `lignes_commande`
 --
 
@@ -93,6 +131,34 @@ CREATE TABLE `lignes_commande` (
   `quantite_ligne` int(11) DEFAULT NULL,
   `prix_ligne` decimal(15,2) DEFAULT NULL,
   `id_commande` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `paniers`
+--
+
+CREATE TABLE `paniers` (
+  `id_utilisateur` int(11) NOT NULL,
+  `id_produit` int(11) NOT NULL,
+  `date_creation` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `produits`
+--
+
+CREATE TABLE `produits` (
+  `id_produit` int(11) NOT NULL,
+  `nom_produit` varchar(150) NOT NULL,
+  `slug` varchar(150) NOT NULL,
+  `description_produit` text NOT NULL,
+  `prix_produit` decimal(15,2) NOT NULL,
+  `id_image` int(11) DEFAULT NULL,
+  `id_categorie` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -155,11 +221,26 @@ ALTER TABLE `agendas`
   ADD KEY `fk_utilisateurs_agendas` (`id_utilisateur`);
 
 --
+-- Index pour la table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id_categorie`);
+
+--
 -- Index pour la table `commandes`
 --
 ALTER TABLE `commandes`
   ADD PRIMARY KEY (`id_commande`),
   ADD KEY `fk_utilisateurs_commandes` (`id_utilisateur`);
+
+--
+-- Index pour la table `commentaires`
+--
+ALTER TABLE `commentaires`
+  ADD PRIMARY KEY (`id_commentaire`),
+  ADD KEY `fk_evennements_commentaires` (`id_evennement`),
+  ADD KEY `fk_produits_commentaires` (`id_produit`),
+  ADD KEY `fk_utilisateurs_commentaires` (`id_utilisateur`);
 
 --
 -- Index pour la table `evennements`
@@ -168,10 +249,31 @@ ALTER TABLE `evennements`
   ADD PRIMARY KEY (`id_evennement`);
 
 --
+-- Index pour la table `images`
+--
+ALTER TABLE `images`
+  ADD PRIMARY KEY (`id_image`);
+
+--
 -- Index pour la table `lignes_commande`
 --
 ALTER TABLE `lignes_commande`
   ADD KEY `fk_commandes_lignes_commande` (`id_commande`);
+
+--
+-- Index pour la table `paniers`
+--
+ALTER TABLE `paniers`
+  ADD PRIMARY KEY (`id_utilisateur`,`id_produit`),
+  ADD KEY `fk_produits_paniers` (`id_produit`);
+
+--
+-- Index pour la table `produits`
+--
+ALTER TABLE `produits`
+  ADD PRIMARY KEY (`id_produit`),
+  ADD KEY `fk_images_produits` (`id_image`),
+  ADD KEY `fk_categories_produits` (`id_categorie`);
 
 --
 -- Index pour la table `roles`
@@ -209,16 +311,40 @@ ALTER TABLE `agendas`
   MODIFY `id_agenda` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `commandes`
 --
 ALTER TABLE `commandes`
   MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `commentaires`
+--
+ALTER TABLE `commentaires`
+  MODIFY `id_commentaire` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `evennements`
 --
 ALTER TABLE `evennements`
   MODIFY `id_evennement` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `images`
+--
+ALTER TABLE `images`
+  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `produits`
+--
+ALTER TABLE `produits`
+  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `roles`
@@ -262,10 +388,32 @@ ALTER TABLE `commandes`
   ADD CONSTRAINT `fk_utilisateurs_commandes` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`id_utilisateur`);
 
 --
+-- Contraintes pour la table `commentaires`
+--
+ALTER TABLE `commentaires`
+  ADD CONSTRAINT `fk_evennements_commentaires` FOREIGN KEY (`id_evennement`) REFERENCES `evennements` (`id_evennement`),
+  ADD CONSTRAINT `fk_produits_commentaires` FOREIGN KEY (`id_produit`) REFERENCES `produits` (`id_produit`),
+  ADD CONSTRAINT `fk_utilisateurs_commentaires` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`id_utilisateur`);
+
+--
 -- Contraintes pour la table `lignes_commande`
 --
 ALTER TABLE `lignes_commande`
   ADD CONSTRAINT `fk_commandes_lignes_commande` FOREIGN KEY (`id_commande`) REFERENCES `commandes` (`id_commande`);
+
+--
+-- Contraintes pour la table `paniers`
+--
+ALTER TABLE `paniers`
+  ADD CONSTRAINT `fk_produits_paniers` FOREIGN KEY (`id_produit`) REFERENCES `produits` (`id_produit`),
+  ADD CONSTRAINT `fk_utilisateurs_paniers` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`id_utilisateur`);
+
+--
+-- Contraintes pour la table `produits`
+--
+ALTER TABLE `produits`
+  ADD CONSTRAINT `fk_categories_produits` FOREIGN KEY (`id_categorie`) REFERENCES `categories` (`id_categorie`),
+  ADD CONSTRAINT `fk_images_produits` FOREIGN KEY (`id_image`) REFERENCES `images` (`id_image`);
 
 --
 -- Contraintes pour la table `utilisateurs`

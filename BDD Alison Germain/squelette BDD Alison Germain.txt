@@ -69,3 +69,47 @@ CREATE TABLE lignes_commande(
     id_commande int,
     CONSTRAINT fk_commandes_lignes_commande FOREIGN KEY(id_commande) REFERENCES commandes(id_commande)
 );
+
+CREATE TABLE images(
+	id_image int PRIMARY KEY AUTO_INCREMENT NOT null,
+    nom_imaage varchar(50) NOT null,
+    url_image varchar(100) NOT null
+);
+
+CREATE TABLE categories(
+	id_categorie int PRIMARY KEY AUTO_INCREMENT NOT null,
+    nom_categorie varchar(50) NOT null
+);
+
+CREATE TABLE produits(
+	id_produit int PRIMARY KEY AUTO_INCREMENT NOT null,
+    nom_produit varchar(150) NOT null,
+    slug varchar(150) NOT null,
+    description_produit text NOT null,
+    prix_produit decimal(15,2) NOT null,
+    id_image int,
+    	CONSTRAINT fk_images_produits FOREIGN KEY(id_image) REFERENCES images(id_image),
+    id_categorie int,
+    	CONSTRAINT fk_categories_produits FOREIGN KEY(id_categorie) REFERENCES categories(id_categorie)
+);
+
+CREATE TABLE paniers(
+	id_utilisateur int,
+    id_produit int,
+    PRIMARY KEY (id_utilisateur, id_produit),
+    date_creation datetime NOT null,
+    	CONSTRAINT fk_utilisateurs_paniers FOREIGN KEY(id_utilisateur) REFERENCES utilisateurs(id_utilisateur),
+    	CONSTRAINT fk_produits_paniers FOREIGN KEY(id_produit) REFERENCES produits(id_produit)
+);
+
+CREATE TABLE commentaires(
+	id_commentaire int PRIMARY KEY AUTO_INCREMENT NOT null,
+    nom_commentaire varchar(100) NOT null,
+    commentaire text NOT null,
+    id_evennement int,
+    	CONSTRAINT fk_evennements_commentaires FOREIGN KEY(id_evennement) REFERENCES evennements(id_evennement),
+    id_produit int,
+    	CONSTRAINT fk_produits_commentaires FOREIGN KEY(id_produit) REFERENCES produits(id_produit),
+    id_utilisateur int,
+    	CONSTRAINT fk_utilisateurs_commentaires FOREIGN KEY(id_utilisateur) REFERENCES utilisateurs(id_utilisateur)
+);
