@@ -1,0 +1,71 @@
+CREATE TABLE roles(
+	id_role int PRIMARY KEY AUTO_INCREMENT NOT null,
+    nom_role varchar(100) NOT null
+);
+
+CREATE TABLE utilisateurs(
+	id_utilisateur int PRIMARY KEY AUTO_INCREMENT NOT null,
+    nom_utilisateur varchar(100) NOT null,
+    prenom_vendeur varchar(100) NOT null,
+    ville_utilisateur varchar(100) NOT null,
+    mail_utilisateur varchar(100) NOT null,
+    password_utilisateur varchar(120) NOT null,
+    id_role int,
+	CONSTRAINT fk_roles_utilisateurs FOREIGN KEY(id_role) REFERENCES roles(id_role)
+);
+
+CREATE TABLE adresses_livraisons(
+	id_adresse_livraison int PRIMARY KEY AUTO_INCREMENT NOT null,
+    nom_ville varchar(100) NOT null,
+    societe varchar(150) NOT null,
+    adresse varchar(250) NOT null,
+    code_postal int NOT null,
+    ville_livraison varchar(100) NOT null,
+    pays varchar(50) NOT null,
+    telephone varchar(20) NOT null,
+    id_utilisateur int,
+	CONSTRAINT fk_utilisateurs_livraisons FOREIGN KEY(id_utilisateur) REFERENCES utilisateurs(id_utilisateur)
+);
+
+CREATE TABLE transporteurs(
+	id_transporteur int PRIMARY KEY AUTO_INCREMENT NOT null,
+    nom_transporteur varchar(100) NOT null,
+    information_transporteur varchar(150) NOT null,
+    prix_transporteur decimal(15,2) NOT null
+);
+
+CREATE TABLE evennements(
+	id_evennement int PRIMARY KEY AUTO_INCREMENT NOT null,
+    nom_evennement varchar(100) NOT null,
+    date_heure_evennement datetime NOT null,
+    detail_evennement text NOT null
+);
+
+CREATE TABLE agendas(
+	id_agenda int PRIMARY KEY AUTO_INCREMENT NOT null,
+    nom_agenda varchar(100) NOT null,
+    date_heure_agenda datetime NOT null,
+    id_evennement int,
+	CONSTRAINT fk_evennements_agendas FOREIGN KEY(id_evennement) REFERENCES evennements(id_evennement),
+    id_utilisateur int,
+	CONSTRAINT fk_utilisateurs_agendas FOREIGN KEY(id_utilisateur) REFERENCES utilisateurs(id_utilisateur)
+);
+
+CREATE TABLE commandes(
+	id_commande int PRIMARY KEY AUTO_INCREMENT NOT null,
+    date_heure_commande datetime NOT null,
+    adresse_livraison_commande varchar(250) NOT null,
+    transporteur_commande varchar(50) NOT null,
+    prix_transport_commande decimal(15,2) NOT null,
+    payee tinyint(1),
+    id_utilisateur int,
+    	CONSTRAINT fk_utilisateurs_commandes FOREIGN KEY(id_utilisateur) REFERENCES utilisateurs(id_utilisateur)
+);
+
+CREATE TABLE lignes_commande(
+	produit_ligne varchar(150),
+    quantite_ligne int,
+    prix_ligne decimal(15,2),
+    id_commande int,
+    CONSTRAINT fk_commandes_lignes_commande FOREIGN KEY(id_commande) REFERENCES commandes(id_commande)
+);
