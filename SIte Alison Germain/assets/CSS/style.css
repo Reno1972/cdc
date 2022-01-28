@@ -100,7 +100,7 @@ section:nth-child(2) div{
     transition: all .5s ease-out;
 }
 .btn:hover{
-   background-color: #C0C0C0;
+   background-color: #778899;
 }
 /* section 3 */
 section:last-child {
