@@ -24,7 +24,7 @@ header{
     position: fixed;
     width: 100%;
     top: 0;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 header nav .lien-nav{
     display: block;
@@ -51,7 +51,7 @@ header nav #logo img{
 }
 /* SECTION 1 le premier né */
 section:first-child{
-    background-color: #FFFFFF;
+    background-color: rgb(255, 255, 255, 0);
     margin-top: 4.7rem;
     padding: 3rem 0;
     font-weight: 800;
