@@ -33,6 +33,36 @@
                 <img src="assets/img/baniere.png" alt="baniere">                
             </article>
         </section>
+        <form action="send.php" method="post">
+            <fieldset class="question">
+
+                <legend>Formulaire d'inscription</legend>
+
+
+                <label for="monsieur">Monsieur</label>
+                <input type="radio" name="sexe" id="sexe" value="monsieur">
+                <label for="madame">Madame</label>
+                <input type="radio" name="sexe" id="sexe" value="madame">
+
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" required>
+                
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" required>
+
+                <label for="login">login</label>
+                <input type="text" id="login" name="login required>
+
+                <label for="mdp">Mot de passe</label>
+                <input type="password" name="mdp" id="mdp" required>
+
+                <label for="mail">Votre email</label>
+                <input type="email" name="mail" id="mail" required>
+
+                <input type="submit" value="Envoyer">
+            </fieldset>
+        </form>
+
     </main>
     <footer>
         <div class="container">
