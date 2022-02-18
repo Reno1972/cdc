@@ -95,6 +95,7 @@ section:first-child p{
 
             /* section 2 le deuxieme */
 
+
 section:nth-child(2) article{
     border: .1rem solid rgb(0, 0, 0, 0.9);
     padding: 1%;
@@ -103,7 +104,6 @@ section:nth-child(2) article{
     text-align: center;
     margin-bottom: 3rem;
 }
-
 section:nth-child(2) article img{
     height: 8rem;
 }
@@ -153,13 +153,18 @@ section:last-child article div{
     width: 60%;
 }
 section:last-child article div h3{
-    font-size: 1.5rem;
     font-weight: 800;
     margin-bottom: 2rem;
+    font-family: 'Marck Script', cursive;
+    font-size: 50px;
+    color: rgb(0, 0, 0, 0.9);
 }
 section:last-child article div p{
-    font-size: 1.1rem;
+    /* font-size: 1.1rem; */
     margin-bottom: 2rem;
+    font-family: 'Marck Script', cursive;
+    font-size: 25px;
+    color: rgb(0, 0, 0, 0.9);
 }
 section:last-child article div p:last-of-type{
     margin-bottom: 3rem;
@@ -168,7 +173,6 @@ section:last-child article div p:last-of-type{
             /* footer */
 
 footer{
-    /* background-color: rgb(147, 112, 219, 0.5); */
     background-color: rgb(70, 130, 180, 0.5);
     text-align: center;
     color: #FFFFFF;
