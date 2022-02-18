@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
+
+
+/*-------- header------- */
+
+header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+
+    display: flex;
+    justify-content: center;
+
+}
+
+
+header nav .lien-nav{
+    /* display: block; */
+    width: 20%;
+    text-align: center;
+    line-height: 4.5rem;
+    text-decoration: none;
+    font-weight: 800;
+    transition: color .5s ease-out;
+    font-family: 'Marck Script', cursive;
+    font-size: x-large;
+    color: rgb(0, 0, 0, 0.9);
+    margin-right: 200px;
+}
+header nav .lien-nav:hover{
+    color: white;
+}
+
+/* **** Bandeau **** */
+
+section:first-child{
+    background-color: rgb(255, 255, 255, 0);
+    margin-top: 4.7rem;
+    padding: 3rem 0;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+    /* footer */
+
+footer{
+    background-color: rgb(70, 130, 180, 0.5);
+    text-align: center;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+
+}
+footer nav a{
+    color:#FFFFFF;
+    font-weight: 800;
+    line-height: 1.8rem;
+    text-decoration: none;
+    font-family: 'Marck Script', cursive;
+    font-size: 30px;
+    margin-right: 150px;
+
+
+}
