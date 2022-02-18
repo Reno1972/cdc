@@ -1,30 +1,33 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;800&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@800&family=Oooh+Baby&display=swap');
-/* global----------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
+
 body{
-    font-family: 'Montserrat Alternates', sans-serif;
-    font-family: 'Oooh Baby', cursive;
+    font-family: 'Marck Script', cursive;
     color:rgb(0, 0, 0, 0.9);
-    /* color:#41210A; */
 }
+
 .container{
     width: 80%;
     margin: auto;
 }
 .fl{float: left;}
+.f2{float: left;}
 .fr{float: right;}
+
 header::after, section::after, article::after, footer::before, nav::after{
     content: '';
     display: block;
     clear: both;
     float: none;
 }
-/* header------------------------------- */
+
+        /*-------- header------- */
+
 header{
     position: fixed;
     width: 100%;
     top: 0;
     background-color: rgba(255, 255, 255, 0.2);
+
 }
 header nav .lien-nav{
     display: block;
@@ -32,13 +35,14 @@ header nav .lien-nav{
     text-align: left;
     line-height: 4.5rem;
     text-decoration: none;
-    color: rgb(0, 0, 0, 0.9);
     font-weight: 800;
     transition: color .5s ease-out;
-
+    font-family: 'Marck Script', cursive;
+    font-size: x-large;
+    color: rgb(0, 0, 0, 0.9);
 }
 header nav .lien-nav:hover{
-    color: #778899;
+    color: white;
 }
 header nav #logo{
     display: block;
@@ -49,7 +53,9 @@ header nav #logo img{
     height: 3.5rem;
     margin: .5rem 0;
 }
-/* SECTION 1 le premier né */
+
+            /* SECTION 1 le premier né */
+
 section:first-child{
     background-color: rgb(255, 255, 255, 0);
     margin-top: 4.7rem;
@@ -58,6 +64,26 @@ section:first-child{
     text-align: center;
     margin-bottom: 2rem;
 }
+.f2{
+    padding: 1rem 2rem;
+    font-weight: 800; 
+    border: .1rem solid rgb(0, 0, 0, 0.9);
+    transition: all .5s ease-out;
+    
+}
+.f2 a{
+    text-decoration: none;
+    color: rgb(0, 0, 0, 0.9);
+}
+.f2 p{
+    font-family: 'Marck Script', cursive;
+    font-size: x-large;
+    color: rgb(0, 0, 0, 0.9);
+}
+
+.f2:hover{
+    background-color: #4682B4;
+ }
 section:first-child h1{
     font-size: 2rem;
     margin-bottom: 1rem;
@@ -66,7 +92,9 @@ section:first-child p{
     font-size: 1.1rem;
     padding: 2rem 0;
 }
-/* section 2 le deuxieme */
+
+            /* section 2 le deuxieme */
+
 section:nth-child(2) article{
     border: .1rem solid rgb(0, 0, 0, 0.9);
     padding: 1%;
@@ -75,6 +103,7 @@ section:nth-child(2) article{
     text-align: center;
     margin-bottom: 3rem;
 }
+
 section:nth-child(2) article img{
     height: 8rem;
 }
@@ -84,8 +113,12 @@ section:nth-child(2) article h2, section:nth-child(2) article p{
 section:nth-child(2) article h2{
    margin: 1rem 0;
    font-weight: 800;
-   font-size: 2rem;
+   /* font-size: 2rem; */
+   font-family: 'Marck Script', cursive;
+   font-size: 50px;
+   color: rgb(0, 0, 0, 0.9);
 }
+
 section:nth-child(2) div{
     clear: both;
     float: none;
@@ -97,12 +130,16 @@ section:nth-child(2) div{
     color:rgb(0, 0, 0, 0.9);
     font-weight: 800; 
     border: .1rem solid rgb(0, 0, 0, 0.9);
-    transition: all .5s ease-out;
+    transition: all .5s ease-out;    font-family: 'Marck Script', cursive;
+    font-size: x-large;
+    color: rgb(0, 0, 0, 0.9);
 }
 .btn:hover{
    background-color: #778899;
 }
-/* section 3 */
+
+            /* section 3 */
+
 section:last-child {
     margin-top: 9rem;
 }
@@ -127,7 +164,9 @@ section:last-child article div p{
 section:last-child article div p:last-of-type{
     margin-bottom: 3rem;
 }
-/* footer */
+
+            /* footer */
+
 footer{
     background-color: rgb(147, 112, 219, 0.5);
     text-align: center;
